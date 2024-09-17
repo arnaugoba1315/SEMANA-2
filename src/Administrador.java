@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Administrador {
-    private ArrayList<Usuario> usuarios;
+    private final ArrayList<Usuario> usuarios;
 
     public Administrador() {
         usuarios = new ArrayList<>();
@@ -16,14 +16,13 @@ public class Administrador {
 
     // Eliminar un usuario por nombre
     public void eliminarUsuario(String nombre) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getNombre().equalsIgnoreCase(nombre)) {
-                usuarios.remove(usuario);
-                System.out.println("Usuario eliminado: " + nombre);
-                return;
-            }
+        Usuario usuario = buscarUsuario(nombre);
+        if (usuario != null) {
+            usuarios.remove(usuario);
+            System.out.println("Usuario eliminado: " + nombre);
+        } else {
+            System.out.println("Usuario no encontrado: " + nombre);
         }
-        System.out.println("Usuario no encontrado: " + nombre);
     }
 
     // Listar todos los usuarios
@@ -36,5 +35,15 @@ public class Administrador {
                 System.out.println(usuario);
             }
         }
+    }
+
+    // Buscar un usuario por nombre
+    public Usuario buscarUsuario(String nombre) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombre().equalsIgnoreCase(nombre)) {
+                return usuario;
+            }
+        }
+        return null; // No se encontró el usuario
     }
 }
