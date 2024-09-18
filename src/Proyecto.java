@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class Proyecto {
     private String nombre;
     private ArrayList<Usuario> programadores;
-    private Tarea[] tareas;
+    private ArrayList<Tarea> tareas;
 
     public Proyecto(String nombre) {
         this.nombre = nombre;
         this.programadores = new ArrayList<>();
-        this.tareas = new ArrayList<>().toArray(new Tarea[0]);
+        this.tareas = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -26,12 +26,8 @@ public class Proyecto {
 
     public void crearTarea(String descripcion, Usuario programador) {
         Tarea nuevaTarea = new Tarea(descripcion, programador);
-        try {
-            tareas.wait();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("Tarea creada y asignada al programador " + programador.getNombre());
+        tareas.add(nuevaTarea);  // Agregar la tarea a la lista de tareas del proyecto
+        System.out.println("Tarea '" + descripcion + "' creada y asignada a " + programador.getNombre());
     }
 
     public void listarTareas() {
@@ -47,10 +43,10 @@ public class Proyecto {
     }
 
     public Tarea[] getTareas() {
-        return tareas;
+        return tareas.toArray(new Tarea[0]);
     }
 
-    public void setTareas(Tarea[] tareas) {
+    public void setTareas(ArrayList<Tarea> tareas) {
         this.tareas = tareas;
     }
 }
