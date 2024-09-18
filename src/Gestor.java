@@ -68,7 +68,7 @@ public class Gestor {
     }
 
     // Buscar proyecto por nombre
-    private Proyecto buscarProyecto(String nombre) {
+    protected Proyecto buscarProyecto(String nombre) {
         for (Proyecto proyecto : proyectos) {
             if (proyecto.getNombre().equalsIgnoreCase(nombre)) {
                 return proyecto;

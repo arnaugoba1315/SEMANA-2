@@ -1,6 +1,6 @@
 public class Tarea {
-    private String descripcion;
-    private Usuario programador;
+    private final String descripcion;
+    private final Usuario programador;
     private boolean finalizada;
 
     public Tarea(String descripcion, Usuario programador) {
@@ -17,5 +17,9 @@ public class Tarea {
     @Override
     public String toString() {
         return "Tarea: " + descripcion + ", Programador: " + programador.getNombre() + ", Finalizada: " + finalizada;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
     }
 }

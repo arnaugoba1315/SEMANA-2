@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class Proyecto {
     private String nombre;
     private ArrayList<Usuario> programadores;
-    private ArrayList<Tarea> tareas;
+    private Tarea[] tareas;
 
     public Proyecto(String nombre) {
         this.nombre = nombre;
         this.programadores = new ArrayList<>();
-        this.tareas = new ArrayList<>();
+        this.tareas = new ArrayList<>().toArray(new Tarea[0]);
     }
 
     public String getNombre() {
@@ -26,7 +26,11 @@ public class Proyecto {
 
     public void crearTarea(String descripcion, Usuario programador) {
         Tarea nuevaTarea = new Tarea(descripcion, programador);
-        tareas.add(nuevaTarea);
+        try {
+            tareas.wait();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println("Tarea creada y asignada al programador " + programador.getNombre());
     }
 
@@ -40,6 +44,14 @@ public class Proyecto {
     @Override
     public String toString() {
         return nombre;
+    }
+
+    public Tarea[] getTareas() {
+        return tareas;
+    }
+
+    public void setTareas(Tarea[] tareas) {
+        this.tareas = tareas;
     }
 }
 

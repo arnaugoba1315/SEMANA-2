@@ -46,4 +46,9 @@ public class Administrador {
         }
         return null; // No se encontró el usuario
     }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
 }
