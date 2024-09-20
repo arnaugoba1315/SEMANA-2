@@ -11,7 +11,7 @@ public class Administrador {
     public void crearUsuario(String nombre, String rol) {
         Usuario nuevoUsuario = new Usuario(nombre, rol);
         usuarios.add(nuevoUsuario);
-        System.out.println("Usuario creado: " + nuevoUsuario);
+        System.out.println("Usuario creado: " + nuevoUsuario.getNombre() + " Rol: " + nuevoUsuario.getRol());
     }
 
     // Eliminar un usuario por nombre
@@ -32,7 +32,7 @@ public class Administrador {
         } else {
             System.out.println("Lista de usuarios:");
             for (Usuario usuario : usuarios) {
-                System.out.println(usuario);
+                System.out.println(usuario.getNombre() + " - " + usuario.getRol());
             }
         }
     }

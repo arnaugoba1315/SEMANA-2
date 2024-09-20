@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
 public class Programador {
+
     protected ArrayList<Proyecto> proyectosAsignados;
 
-    public Programador() {
-        proyectosAsignados = new ArrayList<>();
+    public Programador(ArrayList<Proyecto> proyectos) {
+        proyectosAsignados = proyectos;
     }
 
     // Consultar todos los proyectos en los que el programador está asignado

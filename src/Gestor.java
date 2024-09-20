@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
+import java.lang.System;
 
 public class Gestor {
     protected ArrayList<Proyecto> proyectos;
@@ -56,15 +58,25 @@ public class Gestor {
         }
     }
 
+    public void listarProgramadoresAsignados(String nombreProyecto)
+    {
+        Proyecto proyecto = buscarProyecto(nombreProyecto);
+        if (proyecto.getProgramadores() != null)
+        {
+            int i = 0;
+            while (i < proyecto.getProgramadores().size()) {
+                System.out.println(proyecto.getProgramadores().get(i).getNombre());
+                i++;
+            }
+        }
+    }
     // Asignar un programador a un proyecto
     public void asignarProgramadorAProyecto(String nombreProyecto, String nombreProgramador) {
         Proyecto proyecto = buscarProyecto(nombreProyecto);
         Usuario programador = buscarProgramador(nombreProgramador);
-        Programador programadorasignado;
 
         if (proyecto != null && programador != null) {
             proyecto.asignarProgramador(programador);
-
         }
     }
 
@@ -85,7 +97,7 @@ public class Gestor {
                 return proyecto;
             }
         }
-        System.out.println("Proyecto no encontrado: " + nombre);
+        System.out.println("Proyecto " + nombre + " no encontrado.");
         return null;
     }
 

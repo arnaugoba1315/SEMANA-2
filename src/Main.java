@@ -6,17 +6,16 @@ public class Main {
         Administrador admin = new Administrador();
         ArrayList<Proyecto> proyectos = new ArrayList<>();
         Gestor gestor = new Gestor(admin.getUsuarios(), proyectos);
+        Programador programador = new Programador(proyectos);
         Scanner sc = new Scanner(System.in);
         boolean salir = false;
-        boolean sesioniniciada = false;
+        boolean sesioniniciada;
 
         // Crear algunos usuarios predefinidos
         admin.crearUsuario("admin", "Administrador");  // El Administrador está predefinido
         admin.crearUsuario("Ana", "Gestor");
         admin.crearUsuario("Carlos", "Programador");
         admin.crearUsuario("Juan", "Programador");
-
-        Programador programador = null;
 
         while (!salir) {
             System.out.println("\nBienvenido a la gestión de proyectos.");
@@ -85,7 +84,8 @@ public class Main {
                                 System.out.println("3. Listar programadores");
                                 System.out.println("4. Asignar programador a proyecto");
                                 System.out.println("5. Crear tarea en un proyecto");
-                                System.out.println("6. Cerrar sesión");
+                                System.out.println("6. Listar programadores asignados a proyecto");
+                                System.out.println("7. Cerrar sesión");
                                 System.out.print("Elige una opción: ");
                                 int opcionGestor = sc.nextInt();
                                 sc.nextLine();  // Limpiar buffer
@@ -119,6 +119,16 @@ public class Main {
                                         gestor.crearTareaEnProyecto(proyectoTarea, descripcion, programadorTarea);
                                         break;
                                     case 6:
+                                        if (proyectos.isEmpty())
+                                        {
+                                            System.out.print("No existe ningún proyecto creado");
+                                            break;
+                                        }
+                                        System.out.print("Introduce el nombre del proyecto: ");
+                                        String proyectoAsignado = sc.nextLine();
+                                        gestor.listarProgramadoresAsignados(proyectoAsignado);
+                                        break;
+                                    case 7:
                                         salirGestor = true;
                                         sesioniniciada = false;
                                         break;
@@ -130,7 +140,6 @@ public class Main {
 
                         case "programador":
                             // Iniciar sesión como programador
-                            programador = new Programador();  // Crear un nuevo programador para manejar tareas
                             boolean salirProgramador = false;
 
                             while (!salirProgramador) {
