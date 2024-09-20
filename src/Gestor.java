@@ -108,7 +108,7 @@ public class Gestor {
                 return programador;
             }
         }
-        System.out.println("Programador no encontrado: " + nombre);
+        System.out.println("Programador " + nombre + " no encontrado.");
         return null;
     }
 }

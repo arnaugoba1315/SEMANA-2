@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Proyecto {
     protected String nombre;
@@ -32,24 +33,35 @@ public class Proyecto {
         System.out.println("Tarea '" + descripcion + "' creada y asignada a " + programador.getNombre());
     }
 
-    public void listarTareas() {
-        System.out.println("Tareas del proyecto " + nombre + ":");
-        for (Tarea tarea : tareas) {
-            System.out.println(tarea);
+    public void listarTareasAsignadas(Usuario usuario) {
+        boolean tareaEncontrada = false;
+        while (!tareaEncontrada)
+        {
+            for (Tarea tarea : tareas) {
+                if (usuario.getNombre().equalsIgnoreCase(tarea.getProgramador().getNombre()) && !tarea.getEstado())
+                {
+                    tareaEncontrada = true;
+                }
+            }
         }
-    }
-
-    @Override
-    public String toString() {
-        return nombre;
+        if (tareaEncontrada)
+        {
+            System.out.println("Tareas del proyecto " + nombre + " asignadas a " + usuario.getNombre() + ":");
+            for (Tarea tarea : tareas) {
+                if (usuario.getNombre().equalsIgnoreCase(tarea.getProgramador().getNombre()) && !tarea.getEstado())
+                {
+                    System.out.println(tarea.getDescripcion());
+                }
+            }
+        }
+        else
+        {
+            System.out.println("No hay tareas pendientes del proyecto " + nombre + " asignadas a " + usuario.getNombre() + ".");
+        }
     }
 
     public Tarea[] getTareas() {
         return tareas.toArray(new Tarea[0]);
-    }
-
-    public void setTareas(ArrayList<Tarea> tareas) {
-        this.tareas = tareas;
     }
 }
 

@@ -11,7 +11,7 @@ public class Programador {
     // Consultar todos los proyectos en los que el programador está asignado
     public void consultarProyectos() {
         if (proyectosAsignados.isEmpty()) {
-            System.out.println("No estás asignado a ningún proyecto.");
+            System.out.println("Usuario no asignado a ningún proyecto.");
         } else {
             System.out.println("Proyectos asignados:");
             for (Proyecto proyecto : proyectosAsignados) {
@@ -20,18 +20,15 @@ public class Programador {
         }
     }
 
-    // Consultar todas las tareas asignadas en un proyecto
-    public void consultarTareas(Proyecto proyecto) {
-        proyecto.listarTareas();
-    }
-
     // Marcar una tarea como finalizada
     public void marcarTareaComoFinalizada(Tarea tarea) {
-        tarea.marcarComoFinalizada();
-    }
-
-    // Asignar un proyecto al programador
-    public void asignarProyecto(Proyecto proyecto) {
-        proyectosAsignados.add(proyecto);
+        if (!tarea.getEstado())
+        {
+            tarea.marcarComoFinalizada();
+        }
+        else
+        {
+            System.out.println("Tarea " + tarea.getDescripcion() + " ya finalizada previamente.");
+        }
     }
 }

@@ -159,11 +159,10 @@ public class Main {
                                     case 2:
                                         System.out.print("Introduce el nombre del proyecto: ");
                                         String nombreProyectoConsultar = sc.nextLine();
-                                        Proyecto proyecto = gestor.buscarProyecto(nombreProyectoConsultar);
-                                        if (proyecto != null) {
-                                            programador.consultarTareas(proyecto);
-                                        } else {
-                                            System.out.println("Proyecto no encontrado.");
+                                        Proyecto proyectoaConsultar = gestor.buscarProyecto(nombreProyectoConsultar);
+                                        if (proyectoaConsultar != null)
+                                        {
+                                            proyectoaConsultar.listarTareasAsignadas(usuario);
                                         }
                                         break;
                                     case 3:
@@ -175,18 +174,17 @@ public class Main {
                                             String descripcionTarea = sc.nextLine();
                                             Tarea tareaFinalizar = null;
                                             for (Tarea tarea : proyectoFinalizar.getTareas()) {
-                                                if (tarea.getDescripcion().equalsIgnoreCase(descripcionTarea)) {
+                                                if (tarea.getDescripcion().equalsIgnoreCase(descripcionTarea) && tarea.getProgramador().getNombre().equalsIgnoreCase(usuario.getNombre())) {
                                                     tareaFinalizar = tarea;
                                                     break;
                                                 }
                                             }
                                             if (tareaFinalizar != null) {
                                                 programador.marcarTareaComoFinalizada(tareaFinalizar);
-                                            } else {
+                                            }
+                                            else {
                                                 System.out.println("Tarea no encontrada.");
                                             }
-                                        } else {
-                                            System.out.println("Proyecto no encontrado.");
                                         }
                                         break;
                                     case 4:

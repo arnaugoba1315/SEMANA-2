@@ -15,12 +15,17 @@ public class Tarea {
         System.out.println("Tarea " + descripcion + " finalizada por " + programador.getNombre());
     }
 
-    @Override
-    public String toString() {
-        return "Tarea: " + descripcion + ", Programador: " + programador.getNombre() + ", Finalizada: " + finalizada;
-    }
-
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public Usuario getProgramador()
+    {
+        return programador;
+    }
+
+    public boolean getEstado()
+    {
+        return finalizada;
     }
 }
