@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Programador {
-    private ArrayList<Proyecto> proyectosAsignados;
+    protected ArrayList<Proyecto> proyectosAsignados;
 
     public Programador() {
         proyectosAsignados = new ArrayList<>();

@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 
 public class Proyecto {
-    private String nombre;
-    private ArrayList<Usuario> programadores;
-    private ArrayList<Tarea> tareas;
+    protected String nombre;
+    protected String gestor;
+    protected ArrayList<Usuario> programadores;
+    protected ArrayList<Tarea> tareas;
 
-    public Proyecto(String nombre) {
+    public Proyecto(String nombre, String gestor) {
         this.nombre = nombre;
+        this.gestor = gestor;
         this.programadores = new ArrayList<>();
         this.tareas = new ArrayList<>();
     }

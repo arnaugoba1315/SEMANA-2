@@ -4,6 +4,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Administrador admin = new Administrador();
+        ArrayList<Proyecto> proyectos = new ArrayList<>();
+        Gestor gestor = new Gestor(admin.getUsuarios(), proyectos);
         Scanner sc = new Scanner(System.in);
         boolean salir = false;
         boolean sesioniniciada = false;
@@ -14,13 +16,12 @@ public class Main {
         admin.crearUsuario("Carlos", "Programador");
         admin.crearUsuario("Juan", "Programador");
 
-        Gestor gestor = null;
         Programador programador = null;
 
         while (!salir) {
             System.out.println("\nBienvenido a la gestión de proyectos.");
             System.out.print("Introduce tu nombre de usuario: ");
-            String nombreUsuario = sc.nextLine();
+            String nombreUsuario = sc.nextLine().toLowerCase();
             Usuario usuario = admin.buscarUsuario(nombreUsuario);
 
             if (usuario == null) {
@@ -29,7 +30,7 @@ public class Main {
             else
             {
                 sesioniniciada = true;
-                while (sesioniniciada == true)
+                while (sesioniniciada)
                 {
                     System.out.println("Bienvenido, " + usuario.getNombre() + ". Tu rol es: " + usuario.getRol());
 
@@ -74,7 +75,7 @@ public class Main {
 
                         case "gestor":
                             // Iniciar sesión como gestor
-                            gestor = new Gestor(admin.getUsuarios());  // Obtener los usuarios desde el administrador
+                            gestor.getUsuarios(admin.getUsuarios());  // Obtener los usuarios desde el administrador
                             boolean salirGestor = false;
 
                             while (!salirGestor) {
@@ -93,10 +94,10 @@ public class Main {
                                     case 1:
                                         System.out.print("Introduce el nombre del proyecto: ");
                                         String nombreProyecto = sc.nextLine();
-                                        gestor.crearProyecto(nombreProyecto);
+                                        gestor.crearProyecto(nombreProyecto, nombreUsuario);
                                         break;
                                     case 2:
-                                        gestor.listarProyectos();
+                                        gestor.listarProyectos(nombreUsuario);
                                         break;
                                     case 3:
                                         gestor.listarProgramadores();

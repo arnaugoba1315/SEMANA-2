@@ -1,11 +1,17 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Gestor {
-    private ArrayList<Proyecto> proyectos;
-    private ArrayList<Usuario> programadores;
+    protected ArrayList<Proyecto> proyectos;
+    protected ArrayList<Usuario> programadores;
 
-    public Gestor(ArrayList<Usuario> usuarios) {
-        proyectos = new ArrayList<>();
+    public Gestor(ArrayList<Usuario> usuarios, ArrayList<Proyecto> proyectos) {
+        getUsuarios(usuarios);
+        this.proyectos = proyectos;
+    }
+
+    public void getUsuarios(ArrayList<Usuario> usuarios)
+    {
         programadores = new ArrayList<>();
 
         // Filtrar solo los usuarios con rol "Programador"
@@ -15,22 +21,25 @@ public class Gestor {
             }
         }
     }
-
     // Crear un nuevo proyecto
-    public void crearProyecto(String nombre) {
-        Proyecto nuevoProyecto = new Proyecto(nombre);
+    public void crearProyecto(String nombre, String gestor) {
+        Proyecto nuevoProyecto = new Proyecto(nombre, gestor);
         proyectos.add(nuevoProyecto);
-        System.out.println("Proyecto creado: " + nombre);
+        System.out.println("Proyecto creado con el nombre " + nombre + " administrado por " + gestor);
     }
 
     // Listar todos los proyectos del gestor
-    public void listarProyectos() {
+    public void listarProyectos(String gestor) {
         if (proyectos.isEmpty()) {
             System.out.println("No hay proyectos.");
         } else {
             System.out.println("Proyectos del gestor:");
-            for (Proyecto proyecto : proyectos) {
-                System.out.println(proyecto);
+            for (int i = 0; i < proyectos.size(); i++)
+            {
+                if (Objects.equals(proyectos.get(i).gestor, gestor))
+                {
+                    System.out.println(proyectos.get(i).nombre);
+                }
             }
         }
     }
@@ -51,9 +60,11 @@ public class Gestor {
     public void asignarProgramadorAProyecto(String nombreProyecto, String nombreProgramador) {
         Proyecto proyecto = buscarProyecto(nombreProyecto);
         Usuario programador = buscarProgramador(nombreProgramador);
+        Programador programadorasignado;
 
         if (proyecto != null && programador != null) {
             proyecto.asignarProgramador(programador);
+
         }
     }
 
