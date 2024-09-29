@@ -35,14 +35,16 @@ public class Gestor {
         if (proyectos.isEmpty()) {
             System.out.println("No hay proyectos.");
         } else {
-            System.out.println("Proyectos del gestor:");
+            StringBuilder listaProyectos = new StringBuilder("Proyectos del gestor: " );
             for (int i = 0; i < proyectos.size(); i++)
             {
                 if (Objects.equals(proyectos.get(i).gestor, gestor))
                 {
-                    System.out.println(proyectos.get(i).nombre);
+                    listaProyectos.append(proyectos.get(i).nombre).append(", ");
                 }
             }
+            listaProyectos.delete(listaProyectos.length() - 2, listaProyectos.length());
+            System.out.print(listaProyectos);
         }
     }
 
@@ -51,10 +53,12 @@ public class Gestor {
         if (programadores.isEmpty()) {
             System.out.println("No hay programadores disponibles.");
         } else {
-            System.out.println("Lista de programadores:");
+            StringBuilder listaProgramadores = new StringBuilder("Lista de programadores: " );
             for (Usuario programador : programadores) {
-                System.out.println(programador.getNombre());
+                listaProgramadores.append(programador.getNombre()).append(", ");
             }
+            listaProgramadores.delete(listaProgramadores.length() - 2, listaProgramadores.length());
+            System.out.print(listaProgramadores);
         }
     }
 
@@ -64,10 +68,13 @@ public class Gestor {
         if (proyecto.getProgramadores() != null)
         {
             int i = 0;
+            StringBuilder listaProgramadoresAsignados = new StringBuilder();
             while (i < proyecto.getProgramadores().size()) {
-                System.out.println(proyecto.getProgramadores().get(i).getNombre());
+                listaProgramadoresAsignados.append(proyecto.getProgramadores().get(i).getNombre()).append(", ");
                 i++;
             }
+            listaProgramadoresAsignados.delete(listaProgramadoresAsignados.length() - 2, listaProgramadoresAsignados.length());
+            System.out.print(listaProgramadoresAsignados);
         }
     }
     // Asignar un programador a un proyecto

@@ -13,10 +13,12 @@ public class Programador {
         if (proyectosAsignados.isEmpty()) {
             System.out.println("Usuario no asignado a ningún proyecto.");
         } else {
-            System.out.println("Proyectos asignados:");
+            StringBuilder listaProyectos = new StringBuilder("Proyectos asignados: ");
             for (Proyecto proyecto : proyectosAsignados) {
-                System.out.println(proyecto.getNombre());
+                listaProyectos.append(proyecto.getNombre()).append(", ");
             }
+            listaProyectos.delete(listaProyectos.length() - 2, listaProyectos.length());
+            System.out.print(listaProyectos);
         }
     }
 

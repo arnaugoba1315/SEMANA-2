@@ -38,21 +38,23 @@ public class Proyecto {
         while (!tareaEncontrada)
         {
             for (Tarea tarea : tareas) {
-                if (usuario.getNombre().equalsIgnoreCase(tarea.getProgramador().getNombre()) && !tarea.getEstado())
-                {
+                if (usuario.getNombre().equalsIgnoreCase(tarea.getProgramador().getNombre()) && !tarea.getEstado()) {
                     tareaEncontrada = true;
                 }
             }
+            break;
         }
         if (tareaEncontrada)
         {
-            System.out.println("Tareas del proyecto " + nombre + " asignadas a " + usuario.getNombre() + ":");
+            StringBuilder listaTareas = new StringBuilder("Tareas del proyecto " + nombre + " asignadas a " + usuario.getNombre() + ": ");
             for (Tarea tarea : tareas) {
                 if (usuario.getNombre().equalsIgnoreCase(tarea.getProgramador().getNombre()) && !tarea.getEstado())
                 {
-                    System.out.println(tarea.getDescripcion());
+                    listaTareas.append(tarea.getDescripcion()).append(", ");
                 }
             }
+            listaTareas.delete(listaTareas.length() - 2, listaTareas.length());
+            System.out.print(listaTareas);
         }
         else
         {
