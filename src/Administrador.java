@@ -9,9 +9,14 @@ public class Administrador {
 
     // Crear un nuevo usuario
     public void crearUsuario(String nombre, String rol) {
-        Usuario nuevoUsuario = new Usuario(nombre, rol);
-        usuarios.add(nuevoUsuario);
-        System.out.println("Usuario creado: " + nuevoUsuario.getNombre() + " Rol: " + nuevoUsuario.getRol());
+        // Verificar si ya existe un usuario con el mismo nombre
+        if (buscarUsuario(nombre) != null) {
+            System.out.println("Error: Ya existe un usuario con el nombre '" + nombre + "'. No se puede crear otro usuario con el mismo nombre.");
+        } else {
+            Usuario nuevoUsuario = new Usuario(nombre, rol);
+            usuarios.add(nuevoUsuario);  // Añadir el nuevo usuario a la lista
+            System.out.println("Usuario '" + nombre + "' creado con el rol '" + rol + "'.");
+        }
     }
 
     // Eliminar un usuario por nombre
