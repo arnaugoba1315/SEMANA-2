@@ -48,6 +48,7 @@ public class Main {
 
                                 switch (opcionAdmin) {
                                     case 1:
+                                        admin.listarUsuarios();
                                         System.out.print("Introduce el nombre del nuevo usuario: ");
                                         String nuevoNombre = sc.nextLine();
                                         System.out.print("Introduce el rol del nuevo usuario (Gestor/Programador): ");
@@ -55,6 +56,7 @@ public class Main {
                                         admin.crearUsuario(nuevoNombre, nuevoRol);
                                         break;
                                     case 2:
+                                        admin.listarUsuarios();
                                         System.out.print("Introduce el nombre del usuario a eliminar: ");
                                         String nombreEliminar = sc.nextLine();
                                         admin.eliminarUsuario(nombreEliminar);
@@ -92,6 +94,7 @@ public class Main {
 
                                 switch (opcionGestor) {
                                     case 1:
+                                        gestor.Proyectos();
                                         System.out.print("Introduce el nombre del proyecto: ");
                                         String nombreProyecto = sc.nextLine();
                                         gestor.crearProyecto(nombreProyecto, nombreUsuario);
@@ -103,6 +106,7 @@ public class Main {
                                         gestor.listarProgramadores();
                                         break;
                                     case 4:
+                                        gestor.Proyectos();
                                         System.out.print("Introduce el nombre del proyecto: ");
                                         String proyectoAsignar = sc.nextLine();
                                         System.out.print("Introduce el nombre del programador: ");
@@ -110,6 +114,7 @@ public class Main {
                                         gestor.asignarProgramadorAProyecto(proyectoAsignar, programadorAsignar);
                                         break;
                                     case 5:
+                                        gestor.Proyectos();
                                         System.out.print("Introduce el nombre del proyecto: ");
                                         String proyectoTarea = sc.nextLine();
                                         System.out.print("Introduce la descripción de la tarea: ");
@@ -124,6 +129,7 @@ public class Main {
                                             System.out.print("No existe ningún proyecto creado");
                                             break;
                                         }
+                                        gestor.Proyectos();
                                         System.out.print("Introduce el nombre del proyecto: ");
                                         String proyectoAsignado = sc.nextLine();
                                         gestor.listarProgramadoresAsignados(proyectoAsignado);
@@ -157,6 +163,7 @@ public class Main {
                                         programador.consultarProyectos();
                                         break;
                                     case 2:
+                                        gestor.Proyectos();
                                         System.out.print("Introduce el nombre del proyecto: ");
                                         String nombreProyectoConsultar = sc.nextLine();
                                         Proyecto proyectoaConsultar = gestor.buscarProyecto(nombreProyectoConsultar);
@@ -166,6 +173,7 @@ public class Main {
                                         }
                                         break;
                                     case 3:
+                                        gestor.Proyectos();
                                         System.out.print("Introduce el nombre del proyecto: ");
                                         String nombreProyectoFinalizar = sc.nextLine();
                                         Proyecto proyectoFinalizar = gestor.buscarProyecto(nombreProyectoFinalizar);

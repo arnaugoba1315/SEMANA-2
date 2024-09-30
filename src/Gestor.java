@@ -30,6 +30,20 @@ public class Gestor {
         System.out.println("Proyecto creado con el nombre " + nombre + " administrado por " + gestor);
     }
 
+    public void Proyectos() {
+        if (proyectos.isEmpty()) {
+            System.out.println("No hay proyectos.");
+        } else {
+            StringBuilder listaProyectos = new StringBuilder("Proyectos del gestor: " );
+            for (int i = 0; i < proyectos.size(); i++){
+
+                    listaProyectos.append(proyectos.get(i).nombre).append(", ");
+
+            }
+            listaProyectos.delete(listaProyectos.length() - 2, listaProyectos.length());
+            System.out.print(listaProyectos);
+        }
+    }
     // Listar todos los proyectos del gestor
     public void listarProyectos(String gestor) {
         if (proyectos.isEmpty()) {
